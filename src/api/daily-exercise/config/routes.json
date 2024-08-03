@@ -1,0 +1,21 @@
+{
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/daily-exercise",
+        "handler": "daily-exercise.find",
+        "config": {
+          "policies": []
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/daily-exercise",
+        "handler": "daily-exercise.create",
+        "config": {
+          "policies": []
+        }
+      }
+    ]
+  }
+  

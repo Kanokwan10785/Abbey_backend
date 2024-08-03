@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/exercises/random",
+        "handler": "exercise.findRandom",
+        "config": {
+          "policies": []
+        }
+      }
+    ]
+  }
+  
