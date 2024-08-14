@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "food_items",
+  "info": {
+    "singularName": "food-item",
+    "pluralName": "food-items",
+    "displayName": "Food-item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Food": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Quantity": {
+      "type": "string"
+    }
+  }
+}

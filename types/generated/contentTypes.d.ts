@@ -362,6 +362,147 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
+  collectionName: 'daily_exercises';
+  info: {
+    singularName: 'daily-exercise';
+    pluralName: 'daily-exercises';
+    displayName: 'DailyExercise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date;
+    exercise: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'manyToMany',
+      'api::exercise-pose.exercise-pose'
+    >;
+    totalTime: Attribute.Decimal;
+    totalCalories: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExerciseExercise extends Schema.CollectionType {
+  collectionName: 'exercises';
+  info: {
+    singularName: 'exercise';
+    pluralName: 'exercises';
+    displayName: ' Exercise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    duration: Attribute.Decimal;
+    caloriesBurned: Attribute.Integer;
+    animation: Attribute.Media<'images', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExercisePoseExercisePose extends Schema.CollectionType {
+  collectionName: 'exercise_poses';
+  info: {
+    singularName: 'exercise-pose';
+    pluralName: 'exercise-poses';
+    displayName: 'ExercisePose';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    calories: Attribute.Integer;
+    duration: Attribute.Decimal & Attribute.DefaultTo<0>;
+    daily_exercises: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'manyToMany',
+      'api::daily-exercise.daily-exercise'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFoodItemFoodItem extends Schema.CollectionType {
+  collectionName: 'food_items';
+  info: {
+    singularName: 'food-item';
+    pluralName: 'food-items';
+    displayName: 'Food-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Quantity: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::food-item.food-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::food-item.food-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -792,115 +933,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
-  collectionName: 'daily_exercises';
-  info: {
-    singularName: 'daily-exercise';
-    pluralName: 'daily-exercises';
-    displayName: 'DailyExercise';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.Date;
-    exercise: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'manyToMany',
-      'api::exercise-pose.exercise-pose'
-    >;
-    totalTime: Attribute.Decimal;
-    totalCalories: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExerciseExercise extends Schema.CollectionType {
-  collectionName: 'exercises';
-  info: {
-    singularName: 'exercise';
-    pluralName: 'exercises';
-    displayName: ' Exercise';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    duration: Attribute.Decimal;
-    caloriesBurned: Attribute.Integer;
-    animation: Attribute.Media<'images', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExercisePoseExercisePose extends Schema.CollectionType {
-  collectionName: 'exercise_poses';
-  info: {
-    singularName: 'exercise-pose';
-    pluralName: 'exercise-poses';
-    displayName: 'ExercisePose';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    calories: Attribute.Integer;
-    duration: Attribute.Decimal & Attribute.DefaultTo<0>;
-    daily_exercises: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'manyToMany',
-      'api::daily-exercise.daily-exercise'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -911,6 +943,10 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
+      'api::exercise.exercise': ApiExerciseExercise;
+      'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
+      'api::food-item.food-item': ApiFoodItemFoodItem;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -919,9 +955,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
-      'api::exercise.exercise': ApiExerciseExercise;
-      'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
     }
   }
 }
