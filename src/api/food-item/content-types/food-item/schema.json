@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Food": {
+    "food": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -23,7 +23,13 @@
         "audios"
       ]
     },
-    "Quantity": {
+    "quantity": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
       "type": "string"
     }
   }

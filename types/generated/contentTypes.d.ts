@@ -483,8 +483,10 @@ export interface ApiFoodItemFoodItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Quantity: Attribute.String;
+    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    quantity: Attribute.String;
+    name: Attribute.String;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
