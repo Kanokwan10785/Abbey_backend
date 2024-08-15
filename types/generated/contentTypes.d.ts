@@ -362,149 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
-  collectionName: 'daily_exercises';
-  info: {
-    singularName: 'daily-exercise';
-    pluralName: 'daily-exercises';
-    displayName: 'DailyExercise';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.Date;
-    exercise: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'manyToMany',
-      'api::exercise-pose.exercise-pose'
-    >;
-    totalTime: Attribute.Decimal;
-    totalCalories: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExerciseExercise extends Schema.CollectionType {
-  collectionName: 'exercises';
-  info: {
-    singularName: 'exercise';
-    pluralName: 'exercises';
-    displayName: ' Exercise';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    duration: Attribute.Decimal;
-    caloriesBurned: Attribute.Integer;
-    animation: Attribute.Media<'images', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExercisePoseExercisePose extends Schema.CollectionType {
-  collectionName: 'exercise_poses';
-  info: {
-    singularName: 'exercise-pose';
-    pluralName: 'exercise-poses';
-    displayName: 'ExercisePose';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    calories: Attribute.Integer;
-    duration: Attribute.Decimal & Attribute.DefaultTo<0>;
-    daily_exercises: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'manyToMany',
-      'api::daily-exercise.daily-exercise'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFoodItemFoodItem extends Schema.CollectionType {
-  collectionName: 'food_items';
-  info: {
-    singularName: 'food-item';
-    pluralName: 'food-items';
-    displayName: 'Food-item';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    quantity: Attribute.String;
-    name: Attribute.String;
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::food-item.food-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::food-item.food-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -918,6 +775,17 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     age: Attribute.Integer;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
+    balance: Attribute.Decimal;
+    equipped_items: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::equipped-item.equipped-item'
+    >;
+    purchased_items: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::purchased-item.purchased-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -935,6 +803,278 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
+  collectionName: 'daily_exercises';
+  info: {
+    singularName: 'daily-exercise';
+    pluralName: 'daily-exercises';
+    displayName: 'DailyExercise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date;
+    exercise: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'manyToMany',
+      'api::exercise-pose.exercise-pose'
+    >;
+    totalTime: Attribute.Decimal;
+    totalCalories: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-exercise.daily-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEquippedItemEquippedItem extends Schema.CollectionType {
+  collectionName: 'equipped_items';
+  info: {
+    singularName: 'equipped-item';
+    pluralName: 'equipped-items';
+    displayName: 'Equipped-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    shop_item: Attribute.Relation<
+      'api::equipped-item.equipped-item',
+      'oneToOne',
+      'api::shop-item.shop-item'
+    >;
+    category: Attribute.Enumeration<['Shirt-item', 'Pant-item', 'Skin-item']>;
+    users_permissions_users: Attribute.Relation<
+      'api::equipped-item.equipped-item',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::equipped-item.equipped-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::equipped-item.equipped-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExerciseExercise extends Schema.CollectionType {
+  collectionName: 'exercises';
+  info: {
+    singularName: 'exercise';
+    pluralName: 'exercises';
+    displayName: ' Exercise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    duration: Attribute.Decimal;
+    caloriesBurned: Attribute.Integer;
+    animation: Attribute.Media<'images', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExercisePoseExercisePose extends Schema.CollectionType {
+  collectionName: 'exercise_poses';
+  info: {
+    singularName: 'exercise-pose';
+    pluralName: 'exercise-poses';
+    displayName: 'ExercisePose';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    calories: Attribute.Integer;
+    duration: Attribute.Decimal & Attribute.DefaultTo<0>;
+    daily_exercises: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'manyToMany',
+      'api::daily-exercise.daily-exercise'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise-pose.exercise-pose',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFoodItemFoodItem extends Schema.CollectionType {
+  collectionName: 'food_items';
+  info: {
+    singularName: 'food-item';
+    pluralName: 'food-items';
+    displayName: 'Food-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    quantity: Attribute.String;
+    name: Attribute.String;
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::food-item.food-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::food-item.food-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPurchasedItemPurchasedItem extends Schema.CollectionType {
+  collectionName: 'purchased_items';
+  info: {
+    singularName: 'purchased-item';
+    pluralName: 'purchased-items';
+    displayName: 'Purchased-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    shop_item: Attribute.Relation<
+      'api::purchased-item.purchased-item',
+      'oneToOne',
+      'api::shop-item.shop-item'
+    >;
+    quantity: Attribute.Integer;
+    users_permissions_users: Attribute.Relation<
+      'api::purchased-item.purchased-item',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::purchased-item.purchased-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::purchased-item.purchased-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShopItemShopItem extends Schema.CollectionType {
+  collectionName: 'shop_items';
+  info: {
+    singularName: 'shop-item';
+    pluralName: 'shop-items';
+    displayName: 'Shop-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    category: Attribute.Enumeration<
+      ['Shirt-item', 'Pant-item', 'Skin-item', 'Food-item']
+    >;
+    price: Attribute.Decimal;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Attribute.String;
+    purchased_item: Attribute.Relation<
+      'api::shop-item.shop-item',
+      'oneToOne',
+      'api::purchased-item.purchased-item'
+    >;
+    equipped_item: Attribute.Relation<
+      'api::shop-item.shop-item',
+      'oneToOne',
+      'api::equipped-item.equipped-item'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shop-item.shop-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shop-item.shop-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -945,10 +1085,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
-      'api::exercise.exercise': ApiExerciseExercise;
-      'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
-      'api::food-item.food-item': ApiFoodItemFoodItem;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -957,6 +1093,13 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
+      'api::equipped-item.equipped-item': ApiEquippedItemEquippedItem;
+      'api::exercise.exercise': ApiExerciseExercise;
+      'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
+      'api::food-item.food-item': ApiFoodItemFoodItem;
+      'api::purchased-item.purchased-item': ApiPurchasedItemPurchasedItem;
+      'api::shop-item.shop-item': ApiShopItemShopItem;
     }
   }
 }

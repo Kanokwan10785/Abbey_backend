@@ -87,6 +87,21 @@
         "cat",
         "dog"
       ]
+    },
+    "balance": {
+      "type": "decimal"
+    },
+    "equipped_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::equipped-item.equipped-item",
+      "inversedBy": "users_permissions_users"
+    },
+    "purchased_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::purchased-item.purchased-item",
+      "inversedBy": "users_permissions_users"
     }
   }
 }

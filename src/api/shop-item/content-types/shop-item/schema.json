@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shop_items",
+  "info": {
+    "singularName": "shop-item",
+    "pluralName": "shop-items",
+    "displayName": "Shop-item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Shirt-item",
+        "Pant-item",
+        "Skin-item",
+        "Food-item"
+      ]
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "purchased_item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::purchased-item.purchased-item",
+      "mappedBy": "shop_item"
+    },
+    "equipped_item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::equipped-item.equipped-item",
+      "mappedBy": "shop_item"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipped_items",
+  "info": {
+    "singularName": "equipped-item",
+    "pluralName": "equipped-items",
+    "displayName": "Equipped-item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shop_item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::shop-item.shop-item",
+      "inversedBy": "equipped_item"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Shirt-item",
+        "Pant-item",
+        "Skin-item"
+      ]
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "equipped_items"
+    }
+  }
+}
