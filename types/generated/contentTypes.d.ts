@@ -776,15 +776,15 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
     balance: Attribute.Decimal;
-    equipped_items: Attribute.Relation<
+    clothing_items: Attribute.Relation<
       'plugin::users-permissions.user',
       'manyToMany',
-      'api::equipped-item.equipped-item'
+      'api::clothing-item.clothing-item'
     >;
-    purchased_items: Attribute.Relation<
+    pet_food_item: Attribute.Relation<
       'plugin::users-permissions.user',
-      'manyToMany',
-      'api::purchased-item.purchased-item'
+      'oneToOne',
+      'api::pet-food-item.pet-food-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -796,6 +796,47 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClothingItemClothingItem extends Schema.CollectionType {
+  collectionName: 'clothing_items';
+  info: {
+    singularName: 'clothing-item';
+    pluralName: 'clothing-items';
+    displayName: 'Clothing-item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Attribute.Enumeration<['Shirt-item', 'Pant-item', 'Skin-item']>;
+    user: Attribute.Relation<
+      'api::clothing-item.clothing-item',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    choose_clothes: Attribute.Relation<
+      'api::clothing-item.clothing-item',
+      'manyToOne',
+      'api::shop-item.shop-item'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::clothing-item.clothing-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::clothing-item.clothing-item',
       'oneToOne',
       'admin::user'
     > &
@@ -822,58 +863,22 @@ export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
     >;
     totalTime: Attribute.Decimal;
     totalCalories: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
+    clothing_items: Attribute.Relation<
       'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiEquippedItemEquippedItem extends Schema.CollectionType {
-  collectionName: 'equipped_items';
-  info: {
-    singularName: 'equipped-item';
-    pluralName: 'equipped-items';
-    displayName: 'Equipped-item';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    shop_item: Attribute.Relation<
-      'api::equipped-item.equipped-item',
-      'oneToOne',
-      'api::shop-item.shop-item'
-    >;
-    category: Attribute.Enumeration<['Shirt-item', 'Pant-item', 'Skin-item']>;
-    users_permissions_users: Attribute.Relation<
-      'api::equipped-item.equipped-item',
       'manyToMany',
-      'plugin::users-permissions.user'
+      'api::clothing-item.clothing-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::equipped-item.equipped-item',
+      'api::daily-exercise.daily-exercise',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::equipped-item.equipped-item',
+      'api::daily-exercise.daily-exercise',
       'oneToOne',
       'admin::user'
     > &
@@ -987,40 +992,48 @@ export interface ApiFoodItemFoodItem extends Schema.CollectionType {
   };
 }
 
-export interface ApiPurchasedItemPurchasedItem extends Schema.CollectionType {
-  collectionName: 'purchased_items';
+export interface ApiPetFoodItemPetFoodItem extends Schema.CollectionType {
+  collectionName: 'pet_food_items';
   info: {
-    singularName: 'purchased-item';
-    pluralName: 'purchased-items';
-    displayName: 'Purchased-item';
+    singularName: 'pet-food-item';
+    pluralName: 'pet-food-items';
+    displayName: 'Pet-Food-item';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    shop_item: Attribute.Relation<
-      'api::purchased-item.purchased-item',
+    quantity: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 99;
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>;
+    user: Attribute.Relation<
+      'api::pet-food-item.pet-food-item',
       'oneToOne',
-      'api::shop-item.shop-item'
-    >;
-    quantity: Attribute.Integer;
-    users_permissions_users: Attribute.Relation<
-      'api::purchased-item.purchased-item',
-      'manyToMany',
       'plugin::users-permissions.user'
+    >;
+    choose_foot: Attribute.Relation<
+      'api::pet-food-item.pet-food-item',
+      'manyToOne',
+      'api::shop-item.shop-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::purchased-item.purchased-item',
+      'api::pet-food-item.pet-food-item',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::purchased-item.purchased-item',
+      'api::pet-food-item.pet-food-item',
       'oneToOne',
       'admin::user'
     > &
@@ -1047,15 +1060,16 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
     price: Attribute.Decimal;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     label: Attribute.String;
-    purchased_item: Attribute.Relation<
+    isSinglePurchase: Attribute.Boolean;
+    clothing_items: Attribute.Relation<
       'api::shop-item.shop-item',
-      'oneToOne',
-      'api::purchased-item.purchased-item'
+      'oneToMany',
+      'api::clothing-item.clothing-item'
     >;
-    equipped_item: Attribute.Relation<
+    pet_food_items: Attribute.Relation<
       'api::shop-item.shop-item',
-      'oneToOne',
-      'api::equipped-item.equipped-item'
+      'oneToMany',
+      'api::pet-food-item.pet-food-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1093,12 +1107,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
-      'api::equipped-item.equipped-item': ApiEquippedItemEquippedItem;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
       'api::food-item.food-item': ApiFoodItemFoodItem;
-      'api::purchased-item.purchased-item': ApiPurchasedItemPurchasedItem;
+      'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;
     }
   }

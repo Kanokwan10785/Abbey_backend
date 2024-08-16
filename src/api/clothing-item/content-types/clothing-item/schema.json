@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "equipped_items",
+  "collectionName": "clothing_items",
   "info": {
-    "singularName": "equipped-item",
-    "pluralName": "equipped-items",
-    "displayName": "Equipped-item",
+    "singularName": "clothing-item",
+    "pluralName": "clothing-items",
+    "displayName": "Clothing-item",
     "description": ""
   },
   "options": {
@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "shop_item": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::shop-item.shop-item",
-      "inversedBy": "equipped_item"
-    },
     "category": {
       "type": "enumeration",
       "enum": [
@@ -26,11 +20,17 @@
         "Skin-item"
       ]
     },
-    "users_permissions_users": {
+    "user": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "equipped_items"
+      "inversedBy": "clothing_items"
+    },
+    "choose_clothes": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop-item.shop-item",
+      "inversedBy": "clothing_items"
     }
   }
 }

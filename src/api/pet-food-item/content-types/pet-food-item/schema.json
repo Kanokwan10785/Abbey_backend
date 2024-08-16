@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pet_food_items",
+  "info": {
+    "singularName": "pet-food-item",
+    "pluralName": "pet-food-items",
+    "displayName": "Pet-Food-item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer",
+      "default": 1,
+      "max": 99,
+      "min": 0
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pet_food_item"
+    },
+    "choose_foot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop-item.shop-item",
+      "inversedBy": "pet_food_items"
+    }
+  }
+}

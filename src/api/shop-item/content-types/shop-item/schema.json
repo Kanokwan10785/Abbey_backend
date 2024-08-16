@@ -41,17 +41,20 @@
     "label": {
       "type": "string"
     },
-    "purchased_item": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::purchased-item.purchased-item",
-      "mappedBy": "shop_item"
+    "isSinglePurchase": {
+      "type": "boolean"
     },
-    "equipped_item": {
+    "clothing_items": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::equipped-item.equipped-item",
-      "mappedBy": "shop_item"
+      "relation": "oneToMany",
+      "target": "api::clothing-item.clothing-item",
+      "mappedBy": "choose_clothes"
+    },
+    "pet_food_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pet-food-item.pet-food-item",
+      "mappedBy": "choose_foot"
     }
   }
 }

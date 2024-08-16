@@ -91,17 +91,17 @@
     "balance": {
       "type": "decimal"
     },
-    "equipped_items": {
+    "clothing_items": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::equipped-item.equipped-item",
-      "inversedBy": "users_permissions_users"
+      "target": "api::clothing-item.clothing-item",
+      "mappedBy": "user"
     },
-    "purchased_items": {
+    "pet_food_item": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::purchased-item.purchased-item",
-      "inversedBy": "users_permissions_users"
+      "relation": "oneToOne",
+      "target": "api::pet-food-item.pet-food-item",
+      "mappedBy": "user"
     }
   }
 }

@@ -25,6 +25,12 @@
     },
     "totalCalories": {
       "type": "integer"
+    },
+    "clothing_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::clothing-item.clothing-item",
+      "mappedBy": "skin_item"
     }
   }
 }

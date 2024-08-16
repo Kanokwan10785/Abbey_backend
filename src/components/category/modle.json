@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_category_modles",
+  "info": {
+    "displayName": "modle",
+    "icon": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Shirt-item",
+        "Pant-item",
+        "Skin-item",
+        "Food-item"
+      ]
+    }
+  }
+}
