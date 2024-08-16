@@ -781,11 +781,13 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::clothing-item.clothing-item'
     >;
-    pet_food_item: Attribute.Relation<
+    pet_food_items: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToOne',
+      'oneToMany',
       'api::pet-food-item.pet-food-item'
     >;
+    picture: Attribute.Media<'images'>;
+    birthday: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1015,7 +1017,7 @@ export interface ApiPetFoodItemPetFoodItem extends Schema.CollectionType {
       Attribute.DefaultTo<1>;
     user: Attribute.Relation<
       'api::pet-food-item.pet-food-item',
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     choose_foot: Attribute.Relation<

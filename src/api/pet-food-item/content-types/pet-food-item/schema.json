@@ -20,9 +20,9 @@
     },
     "user": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "pet_food_item"
+      "inversedBy": "pet_food_items"
     },
     "choose_foot": {
       "type": "relation",
