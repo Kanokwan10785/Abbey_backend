@@ -24,11 +24,22 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "pet_food_items"
     },
-    "choose_foot": {
+    "choose_food": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::shop-item.shop-item",
       "inversedBy": "pet_food_items"
+    },
+    "buy_food": {
+      "type": "enumeration",
+      "enum": [
+        "red apple",
+        "watermelon",
+        "fried chicken",
+        "fried fish",
+        "hamburger",
+        "Roast beef"
+      ]
     }
   }
 }

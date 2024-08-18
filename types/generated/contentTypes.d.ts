@@ -828,6 +828,16 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       'manyToOne',
       'api::shop-item.shop-item'
     >;
+    buy_clothes: Attribute.Enumeration<
+      [
+        'blue pajama shirt',
+        'white exercise shirt',
+        'blue pajama pants',
+        'white exercise pants',
+        'gray skills',
+        'orange skill'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1020,10 +1030,20 @@ export interface ApiPetFoodItemPetFoodItem extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    choose_foot: Attribute.Relation<
+    choose_food: Attribute.Relation<
       'api::pet-food-item.pet-food-item',
       'manyToOne',
       'api::shop-item.shop-item'
+    >;
+    buy_food: Attribute.Enumeration<
+      [
+        'red apple',
+        'watermelon',
+        'fried chicken',
+        'fried fish',
+        'hamburger',
+        'Roast beef'
+      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

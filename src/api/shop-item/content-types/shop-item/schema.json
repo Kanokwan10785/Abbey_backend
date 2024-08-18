@@ -54,7 +54,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::pet-food-item.pet-food-item",
-      "mappedBy": "choose_foot"
+      "mappedBy": "choose_food"
     }
   }
 }
