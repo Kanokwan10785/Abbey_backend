@@ -788,6 +788,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     picture: Attribute.Media<'images'>;
     birthday: Attribute.Date;
+    level: Attribute.Integer & Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -104,14 +104,19 @@
       "mappedBy": "user"
     },
     "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "birthday": {
       "type": "date"
+    },
+    "level": {
+      "type": "integer",
+      "default": 1
     }
   }
 }
