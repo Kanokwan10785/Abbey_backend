@@ -776,11 +776,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
     balance: Attribute.Decimal;
-    clothing_items: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::clothing-item.clothing-item'
-    >;
     pet_food_items: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -789,6 +784,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     picture: Attribute.Media<'images'>;
     birthday: Attribute.Date;
     level: Attribute.Integer & Attribute.DefaultTo<1>;
+    clothing_item: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'api::clothing-item.clothing-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -818,25 +818,24 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.Enumeration<['Shirt-item', 'Pant-item', 'Skin-item']>;
-    user: Attribute.Relation<
+    users: Attribute.Relation<
       'api::clothing-item.clothing-item',
-      'manyToMany',
+      'oneToMany',
       'plugin::users-permissions.user'
     >;
-    choose_clothes: Attribute.Relation<
+    Choose_clothes: Attribute.Relation<
       'api::clothing-item.clothing-item',
       'manyToOne',
       'api::shop-item.shop-item'
     >;
     buy_clothes: Attribute.Enumeration<
       [
-        'blue pajama shirt',
-        'white exercise shirt',
-        'blue pajama pants',
-        'white exercise pants',
-        'gray skills',
-        'orange skill'
+        'blue pajamas shirt ',
+        'white gym shirt ',
+        'blue pajamas pants',
+        'black gym pants ',
+        'orange skin ',
+        'grey skin'
       ]
     >;
     createdAt: Attribute.DateTime;
@@ -876,11 +875,6 @@ export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
     >;
     totalTime: Attribute.Decimal;
     totalCalories: Attribute.Integer;
-    clothing_items: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'manyToMany',
-      'api::clothing-item.clothing-item'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -983,7 +977,8 @@ export interface ApiFoodItemFoodItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Private;
     quantity: Attribute.String;
     name: Attribute.String;
     label: Attribute.String;
@@ -1084,15 +1079,15 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     label: Attribute.String;
     isSinglePurchase: Attribute.Boolean;
-    clothing_items: Attribute.Relation<
-      'api::shop-item.shop-item',
-      'oneToMany',
-      'api::clothing-item.clothing-item'
-    >;
     pet_food_items: Attribute.Relation<
       'api::shop-item.shop-item',
       'oneToMany',
       'api::pet-food-item.pet-food-item'
+    >;
+    clothing_items: Attribute.Relation<
+      'api::shop-item.shop-item',
+      'oneToMany',
+      'api::clothing-item.clothing-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

@@ -12,21 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "Shirt-item",
-        "Pant-item",
-        "Skin-item"
-      ]
-    },
-    "user": {
+    "users": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "clothing_items"
+      "mappedBy": "clothing_item"
     },
-    "choose_clothes": {
+    "Choose_clothes": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::shop-item.shop-item",
@@ -35,12 +27,12 @@
     "buy_clothes": {
       "type": "enumeration",
       "enum": [
-        "blue pajama shirt",
-        "white exercise shirt",
-        "blue pajama pants",
-        "white exercise pants",
-        "gray skills",
-        "orange skill"
+        "blue pajamas shirt ",
+        "white gym shirt ",
+        "blue pajamas pants",
+        "black gym pants ",
+        "orange skin ",
+        "grey skin"
       ]
     }
   }
