@@ -830,14 +830,15 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
     >;
     buy_clothes: Attribute.Enumeration<
       [
-        'blue pajamas shirt ',
-        'white gym shirt ',
+        'blue pajamas shirt',
+        'white gym shirt',
         'blue pajamas pants',
-        'black gym pants ',
-        'orange skin ',
+        'black gym pants',
+        'orange skin',
         'grey skin'
       ]
     >;
+    quantity: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
