@@ -14,11 +14,11 @@
   "attributes": {
     "users": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "clothing_item"
+      "inversedBy": "clothing_items"
     },
-    "Choose_clothes": {
+    "choose_clothe": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::shop-item.shop-item",

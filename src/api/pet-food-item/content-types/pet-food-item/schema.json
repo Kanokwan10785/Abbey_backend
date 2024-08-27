@@ -33,12 +33,12 @@
     "buy_food": {
       "type": "enumeration",
       "enum": [
-        "red apple",
+        "apple",
         "watermelon",
         "fried chicken",
         "fried fish",
         "hamburger",
-        "Roast beef"
+        "roast beef"
       ]
     }
   }
