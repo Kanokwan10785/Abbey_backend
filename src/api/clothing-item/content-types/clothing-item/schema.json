@@ -37,6 +37,9 @@
     },
     "quantity": {
       "type": "integer"
+    },
+    "label": {
+      "type": "string"
     }
   }
 }

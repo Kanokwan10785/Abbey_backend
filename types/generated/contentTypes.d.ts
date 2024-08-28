@@ -839,6 +839,7 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       ]
     >;
     quantity: Attribute.Integer;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
