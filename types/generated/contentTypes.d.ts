@@ -882,7 +882,7 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     home_pet: Attribute.Media<'images'>;
-    food_pet: Attribute.Media<'images'>;
+    food_pet: Attribute.Media<'images', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
