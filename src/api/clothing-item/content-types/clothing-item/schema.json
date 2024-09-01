@@ -35,9 +35,6 @@
         "grey skin"
       ]
     },
-    "quantity": {
-      "type": "integer"
-    },
     "label": {
       "type": "string"
     }

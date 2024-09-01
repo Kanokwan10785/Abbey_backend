@@ -838,7 +838,6 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
         'grey skin'
       ]
     >;
-    quantity: Attribute.Integer;
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
