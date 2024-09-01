@@ -120,9 +120,9 @@
     },
     "clothing_pets": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::clothing-pet.clothing-pet",
-      "mappedBy": "user"
+      "mappedBy": "users"
     }
   }
 }

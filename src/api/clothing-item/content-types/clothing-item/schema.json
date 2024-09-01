@@ -37,12 +37,6 @@
     },
     "label": {
       "type": "string"
-    },
-    "clothing_pets": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::clothing-pet.clothing-pet",
-      "mappedBy": "Choose_clothes_pet"
     }
   }
 }

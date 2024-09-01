@@ -4,7 +4,8 @@
   "info": {
     "singularName": "clothing-pet",
     "pluralName": "clothing-pets",
-    "displayName": "Clothing-pet"
+    "displayName": "Clothing-pet",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,21 +16,16 @@
       "type": "string"
     },
     "wearing_pet_clothes": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "Choose_clothes_pet": {
+    "users": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::clothing-item.clothing-item",
-      "inversedBy": "clothing_pets"
-    },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "clothing_pets"
     }

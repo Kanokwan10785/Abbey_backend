@@ -791,7 +791,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     clothing_pets: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToMany',
+      'manyToMany',
       'api::clothing-pet.clothing-pet'
     >;
     createdAt: Attribute.DateTime;
@@ -844,11 +844,6 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       ]
     >;
     label: Attribute.String;
-    clothing_pets: Attribute.Relation<
-      'api::clothing-item.clothing-item',
-      'oneToMany',
-      'api::clothing-pet.clothing-pet'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -873,6 +868,7 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
     singularName: 'clothing-pet';
     pluralName: 'clothing-pets';
     displayName: 'Clothing-pet';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -880,14 +876,9 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   attributes: {
     label: Attribute.String;
     wearing_pet_clothes: Attribute.Media<'images'>;
-    Choose_clothes_pet: Attribute.Relation<
+    users: Attribute.Relation<
       'api::clothing-pet.clothing-pet',
-      'manyToOne',
-      'api::clothing-item.clothing-item'
-    >;
-    user: Attribute.Relation<
-      'api::clothing-pet.clothing-pet',
-      'manyToOne',
+      'manyToMany',
       'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
