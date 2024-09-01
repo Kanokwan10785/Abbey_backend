@@ -775,7 +775,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     age: Attribute.Integer;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
-    balance: Attribute.Decimal;
+    balance: Attribute.Integer;
     pet_food_items: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -784,9 +784,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     picture: Attribute.Media<'images'>;
     birthday: Attribute.Date;
     level: Attribute.Integer & Attribute.DefaultTo<1>;
-    clothing_item: Attribute.Relation<
+    clothing_items: Attribute.Relation<
       'plugin::users-permissions.user',
-      'manyToOne',
+      'manyToMany',
       'api::clothing-item.clothing-item'
     >;
     createdAt: Attribute.DateTime;
@@ -820,24 +820,26 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
   attributes: {
     users: Attribute.Relation<
       'api::clothing-item.clothing-item',
-      'oneToMany',
+      'manyToMany',
       'plugin::users-permissions.user'
     >;
-    Choose_clothes: Attribute.Relation<
+    choose_clothe: Attribute.Relation<
       'api::clothing-item.clothing-item',
       'manyToOne',
       'api::shop-item.shop-item'
     >;
     buy_clothes: Attribute.Enumeration<
       [
-        'blue pajamas shirt ',
-        'white gym shirt ',
+        'blue pajamas shirt',
+        'white gym shirt',
         'blue pajamas pants',
-        'black gym pants ',
-        'orange skin ',
+        'black gym pants',
+        'orange skin',
         'grey skin'
       ]
     >;
+    quantity: Attribute.Integer;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1032,12 +1034,12 @@ export interface ApiPetFoodItemPetFoodItem extends Schema.CollectionType {
     >;
     buy_food: Attribute.Enumeration<
       [
-        'red apple',
+        'apple',
         'watermelon',
         'fried chicken',
         'fried fish',
         'hamburger',
-        'Roast beef'
+        'roast beef'
       ]
     >;
     createdAt: Attribute.DateTime;
@@ -1074,7 +1076,7 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
     category: Attribute.Enumeration<
       ['Shirt-item', 'Pant-item', 'Skin-item', 'Food-item']
     >;
-    price: Attribute.Decimal;
+    price: Attribute.Integer;
     image: Attribute.Media<'images'>;
     label: Attribute.String;
     isSinglePurchase: Attribute.Boolean;
@@ -1083,6 +1085,7 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
       'oneToMany',
       'api::pet-food-item.pet-food-item'
     >;
+    level: Attribute.Integer;
     clothing_items: Attribute.Relation<
       'api::shop-item.shop-item',
       'oneToMany',

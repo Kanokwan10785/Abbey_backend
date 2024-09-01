@@ -25,7 +25,7 @@
       ]
     },
     "price": {
-      "type": "decimal"
+      "type": "integer"
     },
     "image": {
       "type": "media",
@@ -47,11 +47,14 @@
       "target": "api::pet-food-item.pet-food-item",
       "mappedBy": "choose_food"
     },
+    "level": {
+      "type": "integer"
+    },
     "clothing_items": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::clothing-item.clothing-item",
-      "mappedBy": "Choose_clothes"
+      "mappedBy": "choose_clothe"
     }
   }
 }

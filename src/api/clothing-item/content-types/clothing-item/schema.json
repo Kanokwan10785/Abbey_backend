@@ -14,11 +14,11 @@
   "attributes": {
     "users": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "clothing_item"
+      "inversedBy": "clothing_items"
     },
-    "Choose_clothes": {
+    "choose_clothe": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::shop-item.shop-item",
@@ -27,13 +27,19 @@
     "buy_clothes": {
       "type": "enumeration",
       "enum": [
-        "blue pajamas shirt ",
-        "white gym shirt ",
+        "blue pajamas shirt",
+        "white gym shirt",
         "blue pajamas pants",
-        "black gym pants ",
-        "orange skin ",
+        "black gym pants",
+        "orange skin",
         "grey skin"
       ]
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "label": {
+      "type": "string"
     }
   }
 }
