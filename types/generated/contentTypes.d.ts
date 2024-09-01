@@ -789,11 +789,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::clothing-item.clothing-item'
     >;
-    clothing_pets: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::clothing-pet.clothing-pet'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -876,11 +871,6 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   attributes: {
     label: Attribute.String;
     wearing_pet_clothes: Attribute.Media<'images'>;
-    users: Attribute.Relation<
-      'api::clothing-pet.clothing-pet',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

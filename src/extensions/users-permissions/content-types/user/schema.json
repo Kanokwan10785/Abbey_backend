@@ -117,12 +117,6 @@
       "relation": "manyToMany",
       "target": "api::clothing-item.clothing-item",
       "mappedBy": "users"
-    },
-    "clothing_pets": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::clothing-pet.clothing-pet",
-      "mappedBy": "users"
     }
   }
 }
