@@ -881,6 +881,8 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
       'oneToMany',
       'plugin::users-permissions.user'
     >;
+    home_pet: Attribute.Media<'images'>;
+    food_pet: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -28,6 +28,20 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
       "mappedBy": "clothing_pet"
+    },
+    "home_pet": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "food_pet": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
