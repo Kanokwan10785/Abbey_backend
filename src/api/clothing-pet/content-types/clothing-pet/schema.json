@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clothing_pets",
+  "info": {
+    "singularName": "clothing-pet",
+    "pluralName": "clothing-pets",
+    "displayName": "Clothing-pet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "wearing_pet_clothes": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Choose_clothes_pet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::clothing-item.clothing-item",
+      "inversedBy": "clothing_pets"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "clothing_pets"
+    }
+  }
+}

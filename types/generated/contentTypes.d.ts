@@ -789,6 +789,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::clothing-item.clothing-item'
     >;
+    clothing_pets: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::clothing-pet.clothing-pet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -839,6 +844,11 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       ]
     >;
     label: Attribute.String;
+    clothing_pets: Attribute.Relation<
+      'api::clothing-item.clothing-item',
+      'oneToMany',
+      'api::clothing-pet.clothing-pet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -850,6 +860,47 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::clothing-item.clothing-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClothingPetClothingPet extends Schema.CollectionType {
+  collectionName: 'clothing_pets';
+  info: {
+    singularName: 'clothing-pet';
+    pluralName: 'clothing-pets';
+    displayName: 'Clothing-pet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    wearing_pet_clothes: Attribute.Media<'images'>;
+    Choose_clothes_pet: Attribute.Relation<
+      'api::clothing-pet.clothing-pet',
+      'manyToOne',
+      'api::clothing-item.clothing-item'
+    >;
+    user: Attribute.Relation<
+      'api::clothing-pet.clothing-pet',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::clothing-pet.clothing-pet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::clothing-pet.clothing-pet',
       'oneToOne',
       'admin::user'
     > &
@@ -1127,6 +1178,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
+      'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
       'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
