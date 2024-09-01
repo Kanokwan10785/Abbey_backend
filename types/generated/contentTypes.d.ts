@@ -875,7 +875,7 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
-    wearing_pet_clothes: Attribute.Media<'images'>;
+    clothing_pet: Attribute.Media<'images'>;
     users: Attribute.Relation<
       'api::clothing-pet.clothing-pet',
       'oneToMany',
