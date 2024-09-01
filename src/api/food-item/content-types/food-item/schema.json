@@ -16,12 +16,8 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "private": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "quantity": {

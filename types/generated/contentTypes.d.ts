@@ -977,8 +977,7 @@ export interface ApiFoodItemFoodItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    food: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Attribute.Private;
+    food: Attribute.Media<'images'>;
     quantity: Attribute.String;
     name: Attribute.String;
     label: Attribute.String;
@@ -1076,7 +1075,7 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
       ['Shirt-item', 'Pant-item', 'Skin-item', 'Food-item']
     >;
     price: Attribute.Decimal;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Attribute.Media<'images'>;
     label: Attribute.String;
     isSinglePurchase: Attribute.Boolean;
     pet_food_items: Attribute.Relation<
