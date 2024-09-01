@@ -22,6 +22,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "clothing_pet"
     }
   }
 }
