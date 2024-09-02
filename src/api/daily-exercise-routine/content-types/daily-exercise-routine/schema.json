@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_exercise_routines",
+  "info": {
+    "singularName": "daily-exercise-routine",
+    "pluralName": "daily-exercise-routines",
+    "displayName": "Daily Exercise Routine"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Day_name": {
+      "type": "string"
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "inversedBy": "daily_exercise_routines"
+    }
+  }
+}

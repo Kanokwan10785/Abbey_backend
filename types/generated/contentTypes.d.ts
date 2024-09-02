@@ -938,12 +938,49 @@ export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
   };
 }
 
+export interface ApiDailyExerciseRoutineDailyExerciseRoutine
+  extends Schema.CollectionType {
+  collectionName: 'daily_exercise_routines';
+  info: {
+    singularName: 'daily-exercise-routine';
+    pluralName: 'daily-exercise-routines';
+    displayName: 'Daily Exercise Routine';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Day_name: Attribute.String;
+    exercises: Attribute.Relation<
+      'api::daily-exercise-routine.daily-exercise-routine',
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-exercise-routine.daily-exercise-routine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-exercise-routine.daily-exercise-routine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExerciseExercise extends Schema.CollectionType {
   collectionName: 'exercises';
   info: {
     singularName: 'exercise';
     pluralName: 'exercises';
     displayName: ' Exercise';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -952,8 +989,14 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.Blocks;
     duration: Attribute.Decimal;
-    caloriesBurned: Attribute.Integer;
     animation: Attribute.Media<'images', true>;
+    muscle: Attribute.Media<'images' | 'videos' | 'audios' | 'files', true>;
+    daily_exercise_routines: Attribute.Relation<
+      'api::exercise.exercise',
+      'manyToMany',
+      'api::daily-exercise-routine.daily-exercise-routine'
+    >;
+    reps: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1173,6 +1216,7 @@ declare module '@strapi/types' {
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
       'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
+      'api::daily-exercise-routine.daily-exercise-routine': ApiDailyExerciseRoutineDailyExerciseRoutine;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
       'api::food-item.food-item': ApiFoodItemFoodItem;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "exercise",
     "pluralName": "exercises",
-    "displayName": " Exercise"
+    "displayName": " Exercise",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,15 +21,33 @@
     "duration": {
       "type": "decimal"
     },
-    "caloriesBurned": {
-      "type": "integer"
-    },
     "animation": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
+      ]
+    },
+    "muscle": {
       "type": "media",
-      "multiple": true
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios",
+        "files"
+      ]
+    },
+    "daily_exercise_routines": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::daily-exercise-routine.daily-exercise-routine",
+      "mappedBy": "exercises"
+    },
+    "reps": {
+      "type": "integer"
     }
   }
 }
