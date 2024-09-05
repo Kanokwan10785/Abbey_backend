@@ -901,43 +901,6 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyExerciseDailyExercise extends Schema.CollectionType {
-  collectionName: 'daily_exercises';
-  info: {
-    singularName: 'daily-exercise';
-    pluralName: 'daily-exercises';
-    displayName: 'DailyExercise';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.Date;
-    exercise: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'manyToMany',
-      'api::exercise-pose.exercise-pose'
-    >;
-    totalTime: Attribute.Decimal;
-    totalCalories: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::daily-exercise.daily-exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiDailyExerciseRoutineDailyExerciseRoutine
   extends Schema.CollectionType {
   collectionName: 'daily_exercise_routines';
@@ -945,6 +908,7 @@ export interface ApiDailyExerciseRoutineDailyExerciseRoutine
     singularName: 'daily-exercise-routine';
     pluralName: 'daily-exercise-routines';
     displayName: 'Daily Exercise Routine';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -956,6 +920,7 @@ export interface ApiDailyExerciseRoutineDailyExerciseRoutine
       'manyToMany',
       'api::exercise.exercise'
     >;
+    trophy: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -997,6 +962,7 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
       'api::daily-exercise-routine.daily-exercise-routine'
     >;
     reps: Attribute.Integer;
+    dollar: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1008,44 +974,6 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExercisePoseExercisePose extends Schema.CollectionType {
-  collectionName: 'exercise_poses';
-  info: {
-    singularName: 'exercise-pose';
-    pluralName: 'exercise-poses';
-    displayName: 'ExercisePose';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    calories: Attribute.Integer;
-    duration: Attribute.Decimal & Attribute.DefaultTo<0>;
-    daily_exercises: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'manyToMany',
-      'api::daily-exercise.daily-exercise'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise-pose.exercise-pose',
       'oneToOne',
       'admin::user'
     > &
@@ -1215,10 +1143,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
-      'api::daily-exercise.daily-exercise': ApiDailyExerciseDailyExercise;
       'api::daily-exercise-routine.daily-exercise-routine': ApiDailyExerciseRoutineDailyExerciseRoutine;
       'api::exercise.exercise': ApiExerciseExercise;
-      'api::exercise-pose.exercise-pose': ApiExercisePoseExercisePose;
       'api::food-item.food-item': ApiFoodItemFoodItem;
       'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;

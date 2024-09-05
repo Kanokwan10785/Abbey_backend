@@ -4,7 +4,8 @@
   "info": {
     "singularName": "daily-exercise-routine",
     "pluralName": "daily-exercise-routines",
-    "displayName": "Daily Exercise Routine"
+    "displayName": "Daily Exercise Routine",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,9 @@
       "relation": "manyToMany",
       "target": "api::exercise.exercise",
       "inversedBy": "daily_exercise_routines"
+    },
+    "trophy": {
+      "type": "integer"
     }
   }
 }

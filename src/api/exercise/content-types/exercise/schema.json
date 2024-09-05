@@ -48,6 +48,9 @@
     },
     "reps": {
       "type": "integer"
+    },
+    "dollar": {
+      "type": "integer"
     }
   }
 }
