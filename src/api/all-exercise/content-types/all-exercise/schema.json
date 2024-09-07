@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "all_exercises",
+  "info": {
+    "singularName": "all-exercise",
+    "pluralName": "all-exercises",
+    "displayName": "All exercise",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "duration": {
+      "type": "decimal"
+    },
+    "reps": {
+      "type": "integer"
+    },
+    "animation": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "muscle": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "dollar": {
+      "type": "integer"
+    },
+    "addexercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::addexercise.addexercise",
+      "mappedBy": "all_exercises"
+    }
+  }
+}

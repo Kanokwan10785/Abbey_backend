@@ -811,6 +811,87 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddexerciseAddexercise extends Schema.CollectionType {
+  collectionName: 'addexercises';
+  info: {
+    singularName: 'addexercise';
+    pluralName: 'addexercises';
+    displayName: 'Addexercise';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    exercise: Attribute.String;
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    all_exercises: Attribute.Relation<
+      'api::addexercise.addexercise',
+      'manyToMany',
+      'api::all-exercise.all-exercise'
+    >;
+    trophy: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::addexercise.addexercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::addexercise.addexercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
+  collectionName: 'all_exercises';
+  info: {
+    singularName: 'all-exercise';
+    pluralName: 'all-exercises';
+    displayName: 'All exercise';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    duration: Attribute.Decimal;
+    reps: Attribute.Integer;
+    animation: Attribute.Media<'images', true>;
+    muscle: Attribute.Media<'images', true>;
+    dollar: Attribute.Integer;
+    addexercises: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'manyToMany',
+      'api::addexercise.addexercise'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClothingItemClothingItem extends Schema.CollectionType {
   collectionName: 'clothing_items';
   info: {
@@ -1141,6 +1222,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::addexercise.addexercise': ApiAddexerciseAddexercise;
+      'api::all-exercise.all-exercise': ApiAllExerciseAllExercise;
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
       'api::daily-exercise-routine.daily-exercise-routine': ApiDailyExerciseRoutineDailyExerciseRoutine;
