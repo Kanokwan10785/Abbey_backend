@@ -925,6 +925,11 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       ]
     >;
     label: Attribute.String;
+    clothing_pets: Attribute.Relation<
+      'api::clothing-item.clothing-item',
+      'manyToMany',
+      'api::clothing-pet.clothing-pet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -964,6 +969,11 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
     >;
     home_pet: Attribute.Media<'images'>;
     food_pet: Attribute.Media<'images', true>;
+    clothing_items: Attribute.Relation<
+      'api::clothing-pet.clothing-pet',
+      'manyToMany',
+      'api::clothing-item.clothing-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

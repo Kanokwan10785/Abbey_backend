@@ -37,6 +37,12 @@
     },
     "label": {
       "type": "string"
+    },
+    "clothing_pets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::clothing-pet.clothing-pet",
+      "mappedBy": "clothing_items"
     }
   }
 }
