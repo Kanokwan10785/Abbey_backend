@@ -811,6 +811,46 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddCourseAddCourse extends Schema.CollectionType {
+  collectionName: 'add_courses';
+  info: {
+    singularName: 'add-course';
+    pluralName: 'add-courses';
+    displayName: 'Add course';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Coursename: Attribute.String;
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    trophy: Attribute.Integer;
+    all_exercises: Attribute.Relation<
+      'api::add-course.add-course',
+      'manyToMany',
+      'api::all-exercise.all-exercise'
+    >;
+    image: Attribute.Media<'images', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::add-course.add-course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::add-course.add-course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAddexerciseAddexercise extends Schema.CollectionType {
   collectionName: 'addexercises';
   info: {
@@ -873,6 +913,11 @@ export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
       'api::all-exercise.all-exercise',
       'manyToMany',
       'api::addexercise.addexercise'
+    >;
+    add_courses: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'manyToMany',
+      'api::add-course.add-course'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1232,6 +1277,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::add-course.add-course': ApiAddCourseAddCourse;
       'api::addexercise.addexercise': ApiAddexerciseAddexercise;
       'api::all-exercise.all-exercise': ApiAllExerciseAllExercise;
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;

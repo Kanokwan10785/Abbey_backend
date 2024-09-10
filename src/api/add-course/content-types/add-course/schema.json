@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "add_courses",
+  "info": {
+    "singularName": "add-course",
+    "pluralName": "add-courses",
+    "displayName": "Add course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Coursename": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "trophy": {
+      "type": "integer"
+    },
+    "all_exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::all-exercise.all-exercise",
+      "inversedBy": "add_courses"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

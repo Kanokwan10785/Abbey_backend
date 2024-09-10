@@ -48,6 +48,12 @@
       "relation": "manyToMany",
       "target": "api::addexercise.addexercise",
       "mappedBy": "all_exercises"
+    },
+    "add_courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::add-course.add-course",
+      "mappedBy": "all_exercises"
     }
   }
 }
