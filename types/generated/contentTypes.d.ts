@@ -775,7 +775,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     age: Attribute.Integer;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
-    balance: Attribute.Integer;
+    balance: Attribute.Integer & Attribute.DefaultTo<0>;
     pet_food_items: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -970,11 +970,6 @@ export interface ApiClothingItemClothingItem extends Schema.CollectionType {
       ]
     >;
     label: Attribute.String;
-    clothing_pets: Attribute.Relation<
-      'api::clothing-item.clothing-item',
-      'manyToMany',
-      'api::clothing-pet.clothing-pet'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1014,11 +1009,6 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
     >;
     home_pet: Attribute.Media<'images'>;
     food_pet: Attribute.Media<'images', true>;
-    clothing_items: Attribute.Relation<
-      'api::clothing-pet.clothing-pet',
-      'manyToMany',
-      'api::clothing-item.clothing-item'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -89,7 +89,8 @@
       ]
     },
     "balance": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "pet_food_items": {
       "type": "relation",

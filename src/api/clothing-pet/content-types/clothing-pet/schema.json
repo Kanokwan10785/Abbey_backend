@@ -44,12 +44,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "clothing_items": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::clothing-item.clothing-item",
-      "inversedBy": "clothing_pets"
     }
   }
 }
