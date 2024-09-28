@@ -872,6 +872,8 @@ export interface ApiAddexerciseAddexercise extends Schema.CollectionType {
       'api::all-exercise.all-exercise'
     >;
     trophy: Attribute.Integer;
+    image: Attribute.Media<'images', true>;
+    icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
