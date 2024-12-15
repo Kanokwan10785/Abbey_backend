@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "days",
+  "info": {
+    "singularName": "day",
+    "pluralName": "days",
+    "displayName": "Day",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dayNumber": {
+      "type": "integer"
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "week": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::week.week",
+      "inversedBy": "days"
+    },
+    "exercise_days": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise-day.exercise-day",
+      "mappedBy": "day"
+    },
+    "all_exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::all-exercise.all-exercise",
+      "inversedBy": "days"
+    },
+    "trophy": {
+      "type": "integer"
+    }
+  }
+}

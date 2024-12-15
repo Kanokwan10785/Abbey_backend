@@ -54,6 +54,12 @@
       "relation": "manyToMany",
       "target": "api::add-course.add-course",
       "mappedBy": "all_exercises"
+    },
+    "days": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::day.day",
+      "mappedBy": "all_exercises"
     }
   }
 }

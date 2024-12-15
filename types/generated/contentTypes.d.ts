@@ -921,6 +921,11 @@ export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
       'manyToMany',
       'api::add-course.add-course'
     >;
+    days: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'manyToMany',
+      'api::day.day'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1067,6 +1072,42 @@ export interface ApiDailyExerciseRoutineDailyExerciseRoutine
   };
 }
 
+export interface ApiDayDay extends Schema.CollectionType {
+  collectionName: 'days';
+  info: {
+    singularName: 'day';
+    pluralName: 'days';
+    displayName: 'Day';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    dayNumber: Attribute.Integer;
+    completed: Attribute.Boolean;
+    week: Attribute.Relation<'api::day.day', 'manyToOne', 'api::week.week'>;
+    exercise_days: Attribute.Relation<
+      'api::day.day',
+      'oneToMany',
+      'api::exercise-day.exercise-day'
+    >;
+    all_exercises: Attribute.Relation<
+      'api::day.day',
+      'manyToMany',
+      'api::all-exercise.all-exercise'
+    >;
+    trophy: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::day.day', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::day.day', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExerciseExercise extends Schema.CollectionType {
   collectionName: 'exercises';
   info: {
@@ -1102,6 +1143,79 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExerciseDayExerciseDay extends Schema.CollectionType {
+  collectionName: 'exercise_days';
+  info: {
+    singularName: 'exercise-day';
+    pluralName: 'exercise-days';
+    displayName: ' ExerciseDay';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    duration: Attribute.Integer;
+    reps: Attribute.Integer;
+    coin: Attribute.Integer;
+    animation: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    muscle: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    day: Attribute.Relation<
+      'api::exercise-day.exercise-day',
+      'manyToOne',
+      'api::day.day'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise-day.exercise-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise-day.exercise-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExerciseTaskExerciseTask extends Schema.CollectionType {
+  collectionName: 'exercise_tasks';
+  info: {
+    singularName: 'exercise-task';
+    pluralName: 'exercise-tasks';
+    displayName: 'ExerciseTask';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise-task.exercise-task',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise-task.exercise-task',
       'oneToOne',
       'admin::user'
     > &
@@ -1251,6 +1365,66 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
   };
 }
 
+export interface ApiUserProgressUserProgress extends Schema.CollectionType {
+  collectionName: 'user_progresses';
+  info: {
+    singularName: 'user-progress';
+    pluralName: 'user-progresses';
+    displayName: 'UserProgress';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::user-progress.user-progress',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    completedDays: Attribute.Integer;
+    weekProgress: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-progress.user-progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-progress.user-progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWeekWeek extends Schema.CollectionType {
+  collectionName: 'weeks';
+  info: {
+    singularName: 'week';
+    pluralName: 'weeks';
+    displayName: 'Week';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    days: Attribute.Relation<'api::week.week', 'oneToMany', 'api::day.day'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::week.week', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::week.week', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1275,10 +1449,15 @@ declare module '@strapi/types' {
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
       'api::daily-exercise-routine.daily-exercise-routine': ApiDailyExerciseRoutineDailyExerciseRoutine;
+      'api::day.day': ApiDayDay;
       'api::exercise.exercise': ApiExerciseExercise;
+      'api::exercise-day.exercise-day': ApiExerciseDayExerciseDay;
+      'api::exercise-task.exercise-task': ApiExerciseTaskExerciseTask;
       'api::food-item.food-item': ApiFoodItemFoodItem;
       'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;
+      'api::user-progress.user-progress': ApiUserProgressUserProgress;
+      'api::week.week': ApiWeekWeek;
     }
   }
 }

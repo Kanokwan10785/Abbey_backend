@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weeks",
+  "info": {
+    "singularName": "week",
+    "pluralName": "weeks",
+    "displayName": "Week",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "days": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::day.day",
+      "mappedBy": "week"
+    }
+  }
+}
