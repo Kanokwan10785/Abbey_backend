@@ -124,6 +124,12 @@
       "relation": "manyToOne",
       "target": "api::clothing-pet.clothing-pet",
       "inversedBy": "users"
+    },
+    "workout_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout-record.workout-record",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

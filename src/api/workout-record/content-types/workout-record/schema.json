@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workout_records",
+  "info": {
+    "singularName": "workout-record",
+    "pluralName": "workout-records",
+    "displayName": "WorkoutRecord",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "workout_records"
+    },
+    "week": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::week.week",
+      "inversedBy": "workout_records"
+    },
+    "day": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::day.day",
+      "inversedBy": "workout_records"
+    },
+    "status": {
+      "type": "boolean"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "muscles_exercise": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::muscles-exercise.muscles-exercise",
+      "inversedBy": "workout_records"
+    },
+    "exercise_level": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exercise-level.exercise-level",
+      "inversedBy": "workout_records"
+    }
+  }
+}

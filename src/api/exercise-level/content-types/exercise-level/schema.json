@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercise_levels",
+  "info": {
+    "singularName": "exercise-level",
+    "pluralName": "exercise-levels",
+    "displayName": "Exercise-Level",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "trophy": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "muscles_exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::muscles-exercise.muscles-exercise",
+      "inversedBy": "exercise_levels"
+    },
+    "all_exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::all-exercise.all-exercise",
+      "inversedBy": "exercise_levels"
+    },
+    "workout_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout-record.workout-record",
+      "mappedBy": "exercise_level"
+    }
+  }
+}

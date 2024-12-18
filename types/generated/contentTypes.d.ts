@@ -794,6 +794,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'api::clothing-pet.clothing-pet'
     >;
+    workout_records: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -925,6 +930,11 @@ export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
       'api::all-exercise.all-exercise',
       'manyToMany',
       'api::day.day'
+    >;
+    exercise_levels: Attribute.Relation<
+      'api::all-exercise.all-exercise',
+      'manyToMany',
+      'api::exercise-level.exercise-level'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1085,7 +1095,6 @@ export interface ApiDayDay extends Schema.CollectionType {
   };
   attributes: {
     dayNumber: Attribute.Integer;
-    completed: Attribute.Boolean;
     week: Attribute.Relation<'api::day.day', 'manyToOne', 'api::week.week'>;
     exercise_days: Attribute.Relation<
       'api::day.day',
@@ -1098,6 +1107,11 @@ export interface ApiDayDay extends Schema.CollectionType {
       'api::all-exercise.all-exercise'
     >;
     trophy: Attribute.Integer;
+    workout_records: Attribute.Relation<
+      'api::day.day',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1192,6 +1206,55 @@ export interface ApiExerciseDayExerciseDay extends Schema.CollectionType {
   };
 }
 
+export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
+  collectionName: 'exercise_levels';
+  info: {
+    singularName: 'exercise-level';
+    pluralName: 'exercise-levels';
+    displayName: 'Exercise-Level';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    trophy: Attribute.Integer;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    muscles_exercises: Attribute.Relation<
+      'api::exercise-level.exercise-level',
+      'manyToMany',
+      'api::muscles-exercise.muscles-exercise'
+    >;
+    all_exercises: Attribute.Relation<
+      'api::exercise-level.exercise-level',
+      'manyToMany',
+      'api::all-exercise.all-exercise'
+    >;
+    workout_records: Attribute.Relation<
+      'api::exercise-level.exercise-level',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise-level.exercise-level',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise-level.exercise-level',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExerciseTaskExerciseTask extends Schema.CollectionType {
   collectionName: 'exercise_tasks';
   info: {
@@ -1250,6 +1313,48 @@ export interface ApiFoodItemFoodItem extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::food-item.food-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMusclesExerciseMusclesExercise
+  extends Schema.CollectionType {
+  collectionName: 'muscles_exercises';
+  info: {
+    singularName: 'muscles-exercise';
+    pluralName: 'muscles-exercises';
+    displayName: 'Muscles-exercise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Muscles_name: Attribute.String;
+    icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    exercise_levels: Attribute.Relation<
+      'api::muscles-exercise.muscles-exercise',
+      'manyToMany',
+      'api::exercise-level.exercise-level'
+    >;
+    workout_records: Attribute.Relation<
+      'api::muscles-exercise.muscles-exercise',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::muscles-exercise.muscles-exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::muscles-exercise.muscles-exercise',
       'oneToOne',
       'admin::user'
     > &
@@ -1415,12 +1520,74 @@ export interface ApiWeekWeek extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     days: Attribute.Relation<'api::week.week', 'oneToMany', 'api::day.day'>;
+    workout_records: Attribute.Relation<
+      'api::week.week',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::week.week', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::week.week', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWorkoutRecordWorkoutRecord extends Schema.CollectionType {
+  collectionName: 'workout_records';
+  info: {
+    singularName: 'workout-record';
+    pluralName: 'workout-records';
+    displayName: 'WorkoutRecord';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    users_permissions_user: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    week: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'api::week.week'
+    >;
+    day: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'api::day.day'
+    >;
+    status: Attribute.Boolean;
+    timestamp: Attribute.DateTime;
+    muscles_exercise: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'api::muscles-exercise.muscles-exercise'
+    >;
+    exercise_level: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'api::exercise-level.exercise-level'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1452,12 +1619,15 @@ declare module '@strapi/types' {
       'api::day.day': ApiDayDay;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::exercise-day.exercise-day': ApiExerciseDayExerciseDay;
+      'api::exercise-level.exercise-level': ApiExerciseLevelExerciseLevel;
       'api::exercise-task.exercise-task': ApiExerciseTaskExerciseTask;
       'api::food-item.food-item': ApiFoodItemFoodItem;
+      'api::muscles-exercise.muscles-exercise': ApiMusclesExerciseMusclesExercise;
       'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;
       'api::user-progress.user-progress': ApiUserProgressUserProgress;
       'api::week.week': ApiWeekWeek;
+      'api::workout-record.workout-record': ApiWorkoutRecordWorkoutRecord;
     }
   }
 }

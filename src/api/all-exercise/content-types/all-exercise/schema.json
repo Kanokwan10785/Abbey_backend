@@ -60,6 +60,12 @@
       "relation": "manyToMany",
       "target": "api::day.day",
       "mappedBy": "all_exercises"
+    },
+    "exercise_levels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise-level.exercise-level",
+      "mappedBy": "all_exercises"
     }
   }
 }

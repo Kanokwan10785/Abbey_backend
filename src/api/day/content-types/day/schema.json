@@ -15,9 +15,6 @@
     "dayNumber": {
       "type": "integer"
     },
-    "completed": {
-      "type": "boolean"
-    },
     "week": {
       "type": "relation",
       "relation": "manyToOne",
@@ -38,6 +35,12 @@
     },
     "trophy": {
       "type": "integer"
+    },
+    "workout_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout-record.workout-record",
+      "mappedBy": "day"
     }
   }
 }

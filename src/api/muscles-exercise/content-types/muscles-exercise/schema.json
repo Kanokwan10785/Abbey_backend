@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "muscles_exercises",
+  "info": {
+    "singularName": "muscles-exercise",
+    "pluralName": "muscles-exercises",
+    "displayName": "Muscles-exercise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Muscles_name": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "exercise_levels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise-level.exercise-level",
+      "mappedBy": "muscles_exercises"
+    },
+    "workout_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout-record.workout-record",
+      "mappedBy": "muscles_exercise"
+    }
+  }
+}
