@@ -17,7 +17,7 @@
     },
     "clothing_pet": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images"
@@ -31,7 +31,7 @@
     },
     "home_pet": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images"

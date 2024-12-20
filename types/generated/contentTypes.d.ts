@@ -799,6 +799,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::workout-record.workout-record'
     >;
+    BMI: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1018,13 +1019,13 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
-    clothing_pet: Attribute.Media<'images'>;
+    clothing_pet: Attribute.Media<'images', true>;
     users: Attribute.Relation<
       'api::clothing-pet.clothing-pet',
       'oneToMany',
       'plugin::users-permissions.user'
     >;
-    home_pet: Attribute.Media<'images'>;
+    home_pet: Attribute.Media<'images', true>;
     food_pet: Attribute.Media<'images', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
