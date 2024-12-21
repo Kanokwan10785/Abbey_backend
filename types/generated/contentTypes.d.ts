@@ -1238,6 +1238,7 @@ export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
       'oneToMany',
       'api::workout-record.workout-record'
     >;
+    title: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
