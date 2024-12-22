@@ -800,6 +800,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::workout-record.workout-record'
     >;
     BMI: Attribute.Decimal;
+    week: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'api::week.week'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1526,6 +1531,11 @@ export interface ApiWeekWeek extends Schema.CollectionType {
       'api::week.week',
       'oneToMany',
       'api::workout-record.workout-record'
+    >;
+    week_set: Attribute.Relation<
+      'api::week.week',
+      'oneToMany',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

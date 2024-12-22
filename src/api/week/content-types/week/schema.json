@@ -26,6 +26,12 @@
       "relation": "oneToMany",
       "target": "api::workout-record.workout-record",
       "mappedBy": "week"
+    },
+    "week_set": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "week"
     }
   }
 }

@@ -133,6 +133,12 @@
     },
     "BMI": {
       "type": "decimal"
+    },
+    "week": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::week.week",
+      "inversedBy": "week_set"
     }
   }
 }
