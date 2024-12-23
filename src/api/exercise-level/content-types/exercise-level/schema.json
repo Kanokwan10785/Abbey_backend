@@ -52,6 +52,23 @@
     },
     "title": {
       "type": "string"
+    },
+    "difficulty_level": {
+      "type": "enumeration",
+      "enum": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "exercise_levels"
     }
   }
 }

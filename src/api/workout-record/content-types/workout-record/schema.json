@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "workout_records"
-    },
     "week": {
       "type": "relation",
       "relation": "manyToOne",
@@ -46,6 +40,20 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::exercise-level.exercise-level",
+      "inversedBy": "workout_records"
+    },
+    "exercise_levels": {
+      "type": "enumeration",
+      "enum": [
+        "Legs Advanced",
+        "Legs Medium",
+        "Legs Beginner"
+      ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "workout_records"
     }
   }
