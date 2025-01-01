@@ -30,12 +30,6 @@
     "timestamp": {
       "type": "datetime"
     },
-    "muscles_exercise": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::muscles-exercise.muscles-exercise",
-      "inversedBy": "workout_records"
-    },
     "exercise_level": {
       "type": "relation",
       "relation": "manyToOne",
@@ -45,9 +39,18 @@
     "exercise_levels": {
       "type": "enumeration",
       "enum": [
-        "Legs Advanced",
-        "Legs Medium",
-        "Legs Beginner"
+        "legs_advanced",
+        "legs_intermediate",
+        "legs_beginner",
+        "arms_advanced",
+        "arms_intermediate",
+        "arms_beginner",
+        "back_advanced",
+        "back_intermediate",
+        "back_beginner",
+        "chest_advanced",
+        "chest_intermediate",
+        "chest_beginner"
       ]
     },
     "users_permissions_user": {
@@ -55,6 +58,19 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "workout_records"
+    },
+    "add_course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::add-course.add-course",
+      "inversedBy": "workout_records"
+    },
+    "add_courses": {
+      "type": "enumeration",
+      "enum": [
+        "back pain",
+        "neck pain"
+      ]
     }
   }
 }

@@ -31,11 +31,24 @@
       "inversedBy": "add_courses"
     },
     "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "workout_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout-record.workout-record",
+      "mappedBy": "add_course"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "add_courses"
     }
   }
 }

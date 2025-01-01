@@ -29,12 +29,6 @@
       "relation": "manyToMany",
       "target": "api::exercise-level.exercise-level",
       "mappedBy": "muscles_exercises"
-    },
-    "workout_records": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::workout-record.workout-record",
-      "mappedBy": "muscles_exercise"
     }
   }
 }

@@ -41,6 +41,16 @@
       "relation": "oneToMany",
       "target": "api::workout-record.workout-record",
       "mappedBy": "day"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

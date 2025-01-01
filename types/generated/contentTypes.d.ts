@@ -800,15 +800,20 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'api::week.week'
     >;
+    exercise_levels: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::exercise-level.exercise-level'
+    >;
     workout_records: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
       'api::workout-record.workout-record'
     >;
-    exercise_levels: Attribute.Relation<
+    add_courses: Attribute.Relation<
       'plugin::users-permissions.user',
-      'manyToMany',
-      'api::exercise-level.exercise-level'
+      'oneToMany',
+      'api::add-course.add-course'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -849,6 +854,16 @@ export interface ApiAddCourseAddCourse extends Schema.CollectionType {
       'api::all-exercise.all-exercise'
     >;
     image: Attribute.Media<'images', true>;
+    workout_records: Attribute.Relation<
+      'api::add-course.add-course',
+      'oneToMany',
+      'api::workout-record.workout-record'
+    >;
+    user: Attribute.Relation<
+      'api::add-course.add-course',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1123,6 +1138,7 @@ export interface ApiDayDay extends Schema.CollectionType {
       'oneToMany',
       'api::workout-record.workout-record'
     >;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1253,9 +1269,9 @@ export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
       ['Beginner', 'Intermediate', 'Advanced']
     >;
     label: Attribute.String;
-    users: Attribute.Relation<
+    user: Attribute.Relation<
       'api::exercise-level.exercise-level',
-      'manyToMany',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
@@ -1325,11 +1341,6 @@ export interface ApiMusclesExerciseMusclesExercise
       'api::muscles-exercise.muscles-exercise',
       'manyToMany',
       'api::exercise-level.exercise-level'
-    >;
-    workout_records: Attribute.Relation<
-      'api::muscles-exercise.muscles-exercise',
-      'oneToMany',
-      'api::workout-record.workout-record'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1551,24 +1562,38 @@ export interface ApiWorkoutRecordWorkoutRecord extends Schema.CollectionType {
     >;
     status: Attribute.Boolean;
     timestamp: Attribute.DateTime;
-    muscles_exercise: Attribute.Relation<
-      'api::workout-record.workout-record',
-      'manyToOne',
-      'api::muscles-exercise.muscles-exercise'
-    >;
     exercise_level: Attribute.Relation<
       'api::workout-record.workout-record',
       'manyToOne',
       'api::exercise-level.exercise-level'
     >;
     exercise_levels: Attribute.Enumeration<
-      ['Legs Advanced', 'Legs Medium', 'Legs Beginner']
+      [
+        'legs_advanced',
+        'legs_intermediate',
+        'legs_beginner',
+        'arms_advanced',
+        'arms_intermediate',
+        'arms_beginner',
+        'back_advanced',
+        'back_intermediate',
+        'back_beginner',
+        'chest_advanced',
+        'chest_intermediate',
+        'chest_beginner'
+      ]
     >;
     users_permissions_user: Attribute.Relation<
       'api::workout-record.workout-record',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    add_course: Attribute.Relation<
+      'api::workout-record.workout-record',
+      'manyToOne',
+      'api::add-course.add-course'
+    >;
+    add_courses: Attribute.Enumeration<['back pain', 'neck pain']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

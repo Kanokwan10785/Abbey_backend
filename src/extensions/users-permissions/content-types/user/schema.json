@@ -134,17 +134,23 @@
       "target": "api::week.week",
       "inversedBy": "week_set"
     },
+    "exercise_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise-level.exercise-level",
+      "mappedBy": "user"
+    },
     "workout_records": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::workout-record.workout-record",
       "mappedBy": "users_permissions_user"
     },
-    "exercise_levels": {
+    "add_courses": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::exercise-level.exercise-level",
-      "inversedBy": "users"
+      "relation": "oneToMany",
+      "target": "api::add-course.add-course",
+      "mappedBy": "user"
     }
   }
 }
