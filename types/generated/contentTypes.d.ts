@@ -815,6 +815,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::add-course.add-course'
     >;
+    weight_records: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::weight-record.weight-record'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1539,6 +1544,43 @@ export interface ApiWeekWeek extends Schema.CollectionType {
   };
 }
 
+export interface ApiWeightRecordWeightRecord extends Schema.CollectionType {
+  collectionName: 'weight_records';
+  info: {
+    singularName: 'weight-record';
+    pluralName: 'weight-records';
+    displayName: 'WeightRecords';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    weight: Attribute.Decimal;
+    date: Attribute.Date;
+    user: Attribute.Relation<
+      'api::weight-record.weight-record',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::weight-record.weight-record',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::weight-record.weight-record',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWorkoutRecordWorkoutRecord extends Schema.CollectionType {
   collectionName: 'workout_records';
   info: {
@@ -1647,6 +1689,7 @@ declare module '@strapi/types' {
       'api::shop-item.shop-item': ApiShopItemShopItem;
       'api::user-progress.user-progress': ApiUserProgressUserProgress;
       'api::week.week': ApiWeekWeek;
+      'api::weight-record.weight-record': ApiWeightRecordWeightRecord;
       'api::workout-record.workout-record': ApiWorkoutRecordWorkoutRecord;
     }
   }

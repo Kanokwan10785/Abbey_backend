@@ -151,6 +151,12 @@
       "relation": "oneToMany",
       "target": "api::add-course.add-course",
       "mappedBy": "user"
+    },
+    "weight_records": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::weight-record.weight-record",
+      "mappedBy": "user"
     }
   }
 }
