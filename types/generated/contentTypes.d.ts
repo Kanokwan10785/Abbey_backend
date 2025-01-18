@@ -1090,6 +1090,7 @@ export interface ApiDailyExerciseRoutineDailyExerciseRoutine
       'api::exercise.exercise'
     >;
     trophy: Attribute.Integer;
+    time: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1561,7 +1562,7 @@ export interface ApiWorkoutRecordWorkoutRecord extends Schema.CollectionType {
       'api::day.day'
     >;
     status: Attribute.Boolean;
-    timestamp: Attribute.DateTime;
+    timestamp: Attribute.Date;
     exercise_level: Attribute.Relation<
       'api::workout-record.workout-record',
       'manyToOne',

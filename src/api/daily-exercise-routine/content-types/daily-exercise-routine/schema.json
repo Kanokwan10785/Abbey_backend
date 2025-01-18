@@ -23,6 +23,9 @@
     },
     "trophy": {
       "type": "integer"
+    },
+    "time": {
+      "type": "datetime"
     }
   }
 }
