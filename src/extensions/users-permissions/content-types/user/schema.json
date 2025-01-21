@@ -66,10 +66,10 @@
       "configurable": false
     },
     "height": {
-      "type": "integer"
+      "type": "decimal"
     },
     "weight": {
-      "type": "integer"
+      "type": "decimal"
     },
     "age": {
       "type": "integer"
