@@ -770,9 +770,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    height: Attribute.Decimal;
-    weight: Attribute.Decimal;
-    age: Attribute.Integer;
+    height: Attribute.Decimal & Attribute.DefaultTo<0>;
+    weight: Attribute.Decimal & Attribute.DefaultTo<0>;
+    age: Attribute.Integer & Attribute.DefaultTo<0>;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
     balance: Attribute.Integer & Attribute.DefaultTo<0>;
