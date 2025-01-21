@@ -28,7 +28,7 @@
       "type": "boolean"
     },
     "timestamp": {
-      "type": "datetime"
+      "type": "date"
     },
     "exercise_level": {
       "type": "relation",
