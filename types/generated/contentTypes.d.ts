@@ -1057,6 +1057,7 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
     >;
     home_pet: Attribute.Media<'images', true>;
     food_pet: Attribute.Media<'images', true>;
+    bmi_type: Attribute.Enumeration<['BMI01', 'BMI02', 'BMI03', 'BMI04']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
