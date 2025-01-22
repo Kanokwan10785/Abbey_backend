@@ -1637,6 +1637,8 @@ export interface ApiWorkoutRecordWorkoutRecord extends Schema.CollectionType {
       'api::add-course.add-course'
     >;
     add_courses: Attribute.Enumeration<['back pain', 'neck pain']>;
+    missed: Attribute.Boolean;
+    resetTimestamp: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

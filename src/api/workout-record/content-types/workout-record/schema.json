@@ -71,6 +71,12 @@
         "back pain",
         "neck pain"
       ]
+    },
+    "missed": {
+      "type": "boolean"
+    },
+    "resetTimestamp": {
+      "type": "date"
     }
   }
 }
