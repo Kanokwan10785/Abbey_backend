@@ -771,7 +771,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.role'
     >;
     height: Attribute.Decimal & Attribute.DefaultTo<0>;
-    weight: Attribute.Decimal & Attribute.DefaultTo<0>;
+    weight: Attribute.Decimal;
     age: Attribute.Integer & Attribute.DefaultTo<0>;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;

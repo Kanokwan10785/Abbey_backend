@@ -70,8 +70,7 @@
       "default": 0
     },
     "weight": {
-      "type": "decimal",
-      "default": 0
+      "type": "decimal"
     },
     "age": {
       "type": "integer",
