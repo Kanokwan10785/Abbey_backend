@@ -887,47 +887,6 @@ export interface ApiAddCourseAddCourse extends Schema.CollectionType {
   };
 }
 
-export interface ApiAddexerciseAddexercise extends Schema.CollectionType {
-  collectionName: 'addexercises';
-  info: {
-    singularName: 'addexercise';
-    pluralName: 'addexercises';
-    displayName: 'Addexercise';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    exercise: Attribute.String;
-    name: Attribute.String;
-    description: Attribute.Blocks;
-    all_exercises: Attribute.Relation<
-      'api::addexercise.addexercise',
-      'manyToMany',
-      'api::all-exercise.all-exercise'
-    >;
-    trophy: Attribute.Integer;
-    image: Attribute.Media<'images', true>;
-    icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::addexercise.addexercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::addexercise.addexercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
   collectionName: 'all_exercises';
   info: {
@@ -947,11 +906,6 @@ export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
     animation: Attribute.Media<'images', true>;
     muscle: Attribute.Media<'images', true>;
     dollar: Attribute.Integer;
-    addexercises: Attribute.Relation<
-      'api::all-exercise.all-exercise',
-      'manyToMany',
-      'api::addexercise.addexercise'
-    >;
     add_courses: Attribute.Relation<
       'api::all-exercise.all-exercise',
       'manyToMany',
@@ -1076,45 +1030,6 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
   };
 }
 
-export interface ApiDailyExerciseRoutineDailyExerciseRoutine
-  extends Schema.CollectionType {
-  collectionName: 'daily_exercise_routines';
-  info: {
-    singularName: 'daily-exercise-routine';
-    pluralName: 'daily-exercise-routines';
-    displayName: 'Daily Exercise Routine';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Day_name: Attribute.String;
-    exercises: Attribute.Relation<
-      'api::daily-exercise-routine.daily-exercise-routine',
-      'manyToMany',
-      'api::exercise.exercise'
-    >;
-    trophy: Attribute.Integer;
-    time: Attribute.DateTime;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::daily-exercise-routine.daily-exercise-routine',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::daily-exercise-routine.daily-exercise-routine',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiDayDay extends Schema.CollectionType {
   collectionName: 'days';
   info: {
@@ -1129,11 +1044,6 @@ export interface ApiDayDay extends Schema.CollectionType {
   attributes: {
     dayNumber: Attribute.Integer;
     week: Attribute.Relation<'api::day.day', 'manyToOne', 'api::week.week'>;
-    exercise_days: Attribute.Relation<
-      'api::day.day',
-      'oneToMany',
-      'api::exercise-day.exercise-day'
-    >;
     all_exercises: Attribute.Relation<
       'api::day.day',
       'manyToMany',
@@ -1173,11 +1083,6 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
     duration: Attribute.Decimal;
     animation: Attribute.Media<'images', true>;
     muscle: Attribute.Media<'images' | 'videos' | 'audios' | 'files', true>;
-    daily_exercise_routines: Attribute.Relation<
-      'api::exercise.exercise',
-      'manyToMany',
-      'api::daily-exercise-routine.daily-exercise-routine'
-    >;
     reps: Attribute.Integer;
     dollar: Attribute.Integer;
     createdAt: Attribute.DateTime;
@@ -1191,48 +1096,6 @@ export interface ApiExerciseExercise extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::exercise.exercise',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExerciseDayExerciseDay extends Schema.CollectionType {
-  collectionName: 'exercise_days';
-  info: {
-    singularName: 'exercise-day';
-    pluralName: 'exercise-days';
-    displayName: ' ExerciseDay';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.Text;
-    duration: Attribute.Integer;
-    reps: Attribute.Integer;
-    coin: Attribute.Integer;
-    animation: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    muscle: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    day: Attribute.Relation<
-      'api::exercise-day.exercise-day',
-      'manyToOne',
-      'api::day.day'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise-day.exercise-day',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise-day.exercise-day',
       'oneToOne',
       'admin::user'
     > &
@@ -1292,37 +1155,6 @@ export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::exercise-level.exercise-level',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExerciseTaskExerciseTask extends Schema.CollectionType {
-  collectionName: 'exercise_tasks';
-  info: {
-    singularName: 'exercise-task';
-    pluralName: 'exercise-tasks';
-    displayName: 'ExerciseTask';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Name: Attribute.String;
-    description: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exercise-task.exercise-task',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::exercise-task.exercise-task',
       'oneToOne',
       'admin::user'
     > &
@@ -1677,16 +1509,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::add-course.add-course': ApiAddCourseAddCourse;
-      'api::addexercise.addexercise': ApiAddexerciseAddexercise;
       'api::all-exercise.all-exercise': ApiAllExerciseAllExercise;
       'api::clothing-item.clothing-item': ApiClothingItemClothingItem;
       'api::clothing-pet.clothing-pet': ApiClothingPetClothingPet;
-      'api::daily-exercise-routine.daily-exercise-routine': ApiDailyExerciseRoutineDailyExerciseRoutine;
       'api::day.day': ApiDayDay;
       'api::exercise.exercise': ApiExerciseExercise;
-      'api::exercise-day.exercise-day': ApiExerciseDayExerciseDay;
       'api::exercise-level.exercise-level': ApiExerciseLevelExerciseLevel;
-      'api::exercise-task.exercise-task': ApiExerciseTaskExerciseTask;
       'api::muscles-exercise.muscles-exercise': ApiMusclesExerciseMusclesExercise;
       'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;

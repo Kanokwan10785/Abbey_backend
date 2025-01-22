@@ -21,12 +21,6 @@
       "target": "api::week.week",
       "inversedBy": "days"
     },
-    "exercise_days": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::exercise-day.exercise-day",
-      "mappedBy": "day"
-    },
     "all_exercises": {
       "type": "relation",
       "relation": "manyToMany",

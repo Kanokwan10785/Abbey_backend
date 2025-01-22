@@ -40,12 +40,6 @@
         "files"
       ]
     },
-    "daily_exercise_routines": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::daily-exercise-routine.daily-exercise-routine",
-      "mappedBy": "exercises"
-    },
     "reps": {
       "type": "integer"
     },

@@ -43,12 +43,6 @@
     "dollar": {
       "type": "integer"
     },
-    "addexercises": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::addexercise.addexercise",
-      "mappedBy": "all_exercises"
-    },
     "add_courses": {
       "type": "relation",
       "relation": "manyToMany",
