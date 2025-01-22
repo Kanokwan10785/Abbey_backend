@@ -44,6 +44,15 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "bmi_type": {
+      "type": "enumeration",
+      "enum": [
+        "BMI01",
+        "BMI02",
+        "BMI03",
+        "BMI04"
+      ]
     }
   }
 }

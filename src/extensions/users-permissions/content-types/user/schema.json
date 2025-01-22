@@ -66,13 +66,15 @@
       "configurable": false
     },
     "height": {
-      "type": "integer"
+      "type": "decimal",
+      "default": 0
     },
     "weight": {
-      "type": "integer"
+      "type": "decimal"
     },
     "age": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "selectedGender": {
       "type": "enumeration",

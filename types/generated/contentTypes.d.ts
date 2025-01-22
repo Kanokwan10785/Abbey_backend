@@ -770,9 +770,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    height: Attribute.Integer;
-    weight: Attribute.Integer;
-    age: Attribute.Integer;
+    height: Attribute.Decimal & Attribute.DefaultTo<0>;
+    weight: Attribute.Decimal;
+    age: Attribute.Integer & Attribute.DefaultTo<0>;
     selectedGender: Attribute.Enumeration<['male', 'female']>;
     selectPet: Attribute.Enumeration<['cat', 'dog']>;
     balance: Attribute.Integer & Attribute.DefaultTo<0>;
@@ -1057,6 +1057,7 @@ export interface ApiClothingPetClothingPet extends Schema.CollectionType {
     >;
     home_pet: Attribute.Media<'images', true>;
     food_pet: Attribute.Media<'images', true>;
+    bmi_type: Attribute.Enumeration<['BMI01', 'BMI02', 'BMI03', 'BMI04']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
