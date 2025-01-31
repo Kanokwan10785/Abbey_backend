@@ -820,6 +820,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::weight-record.weight-record'
     >;
+    currentWeekCoins: Attribute.Integer;
+    resetDate: Attribute.Date;
+    EXP: Attribute.Integer;
+    currentWeekExp: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1056,6 +1060,7 @@ export interface ApiDayDay extends Schema.CollectionType {
       'api::workout-record.workout-record'
     >;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    exp: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

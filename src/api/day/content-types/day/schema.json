@@ -37,14 +37,18 @@
       "mappedBy": "day"
     },
     "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "exp": {
+      "type": "integer"
     }
   }
 }

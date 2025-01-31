@@ -159,6 +159,18 @@
       "relation": "oneToMany",
       "target": "api::weight-record.weight-record",
       "mappedBy": "user"
+    },
+    "currentWeekCoins": {
+      "type": "integer"
+    },
+    "resetDate": {
+      "type": "date"
+    },
+    "EXP": {
+      "type": "integer"
+    },
+    "currentWeekExp": {
+      "type": "integer"
     }
   }
 }
