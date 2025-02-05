@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_exercise_muscles",
+  "info": {
+    "singularName": "user-exercise-muscle",
+    "pluralName": "user-exercise-muscles",
+    "displayName": "user_exercise_muscle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "exercise_levels": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "date"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "user_exercise_muscles"
+    },
+    "resetData": {
+      "type": "date"
+    }
+  }
+}

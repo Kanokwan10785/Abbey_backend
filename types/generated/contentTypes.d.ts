@@ -800,9 +800,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'api::week.week'
     >;
-    exercise_levels: Attribute.Relation<
+    user_exercise_muscle: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToMany',
+      'manyToMany',
       'api::exercise-level.exercise-level'
     >;
     workout_records: Attribute.Relation<
@@ -824,6 +824,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     resetDate: Attribute.Date;
     EXP: Attribute.Integer;
     currentWeekExp: Attribute.Integer;
+    user_exercise_muscles: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::user-exercise-muscle.user-exercise-muscle'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1144,9 +1149,9 @@ export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
       ['Beginner', 'Intermediate', 'Advanced']
     >;
     label: Attribute.String;
-    user: Attribute.Relation<
+    users: Attribute.Relation<
       'api::exercise-level.exercise-level',
-      'manyToOne',
+      'manyToMany',
       'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
@@ -1305,6 +1310,45 @@ export interface ApiShopItemShopItem extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::shop-item.shop-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUserExerciseMuscleUserExerciseMuscle
+  extends Schema.CollectionType {
+  collectionName: 'user_exercise_muscles';
+  info: {
+    singularName: 'user-exercise-muscle';
+    pluralName: 'user-exercise-muscles';
+    displayName: 'user_exercise_muscle';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    exercise_levels: Attribute.String;
+    timestamp: Attribute.Date;
+    users: Attribute.Relation<
+      'api::user-exercise-muscle.user-exercise-muscle',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    resetData: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-exercise-muscle.user-exercise-muscle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-exercise-muscle.user-exercise-muscle',
       'oneToOne',
       'admin::user'
     > &
@@ -1523,6 +1567,7 @@ declare module '@strapi/types' {
       'api::muscles-exercise.muscles-exercise': ApiMusclesExerciseMusclesExercise;
       'api::pet-food-item.pet-food-item': ApiPetFoodItemPetFoodItem;
       'api::shop-item.shop-item': ApiShopItemShopItem;
+      'api::user-exercise-muscle.user-exercise-muscle': ApiUserExerciseMuscleUserExerciseMuscle;
       'api::user-progress.user-progress': ApiUserProgressUserProgress;
       'api::week.week': ApiWeekWeek;
       'api::weight-record.weight-record': ApiWeightRecordWeightRecord;

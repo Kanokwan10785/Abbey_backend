@@ -64,11 +64,11 @@
     "label": {
       "type": "string"
     },
-    "user": {
+    "users": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "exercise_levels"
+      "mappedBy": "user_exercise_muscle"
     }
   }
 }

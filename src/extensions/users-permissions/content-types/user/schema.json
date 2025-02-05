@@ -136,11 +136,11 @@
       "target": "api::week.week",
       "inversedBy": "week_set"
     },
-    "exercise_levels": {
+    "user_exercise_muscle": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::exercise-level.exercise-level",
-      "mappedBy": "user"
+      "inversedBy": "users"
     },
     "workout_records": {
       "type": "relation",
@@ -171,6 +171,12 @@
     },
     "currentWeekExp": {
       "type": "integer"
+    },
+    "user_exercise_muscles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-exercise-muscle.user-exercise-muscle",
+      "inversedBy": "users"
     }
   }
 }
