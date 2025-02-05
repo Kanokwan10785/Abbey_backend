@@ -795,25 +795,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::clothing-pet.clothing-pet'
     >;
     BMI: Attribute.Decimal;
-    week: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToOne',
-      'api::week.week'
-    >;
-    user_exercise_muscle: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::exercise-level.exercise-level'
-    >;
     workout_records: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
       'api::workout-record.workout-record'
-    >;
-    add_courses: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::add-course.add-course'
     >;
     weight_records: Attribute.Relation<
       'plugin::users-permissions.user',
@@ -872,11 +857,6 @@ export interface ApiAddCourseAddCourse extends Schema.CollectionType {
       'api::add-course.add-course',
       'oneToMany',
       'api::workout-record.workout-record'
-    >;
-    user: Attribute.Relation<
-      'api::add-course.add-course',
-      'manyToOne',
-      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1149,11 +1129,6 @@ export interface ApiExerciseLevelExerciseLevel extends Schema.CollectionType {
       ['Beginner', 'Intermediate', 'Advanced']
     >;
     label: Attribute.String;
-    users: Attribute.Relation<
-      'api::exercise-level.exercise-level',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1410,11 +1385,6 @@ export interface ApiWeekWeek extends Schema.CollectionType {
       'api::week.week',
       'oneToMany',
       'api::workout-record.workout-record'
-    >;
-    week_set: Attribute.Relation<
-      'api::week.week',
-      'oneToMany',
-      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

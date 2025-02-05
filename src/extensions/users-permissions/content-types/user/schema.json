@@ -130,29 +130,11 @@
     "BMI": {
       "type": "decimal"
     },
-    "week": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::week.week",
-      "inversedBy": "week_set"
-    },
-    "user_exercise_muscle": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::exercise-level.exercise-level",
-      "inversedBy": "users"
-    },
     "workout_records": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::workout-record.workout-record",
       "mappedBy": "users_permissions_user"
-    },
-    "add_courses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::add-course.add-course",
-      "mappedBy": "user"
     },
     "weight_records": {
       "type": "relation",
