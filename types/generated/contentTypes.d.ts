@@ -814,6 +814,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::user-exercise-muscle.user-exercise-muscle'
     >;
+    outfit: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

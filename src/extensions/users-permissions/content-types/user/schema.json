@@ -159,6 +159,9 @@
       "relation": "manyToMany",
       "target": "api::user-exercise-muscle.user-exercise-muscle",
       "inversedBy": "users"
+    },
+    "outfit": {
+      "type": "json"
     }
   }
 }
