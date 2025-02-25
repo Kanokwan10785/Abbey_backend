@@ -895,7 +895,7 @@ export interface ApiAllExerciseAllExercise extends Schema.CollectionType {
     reps: Attribute.Integer;
     animation: Attribute.Media<'images', true>;
     muscle: Attribute.Media<'images', true>;
-    dollar: Attribute.Integer;
+    coin: Attribute.Integer;
     add_courses: Attribute.Relation<
       'api::all-exercise.all-exercise',
       'manyToMany',

@@ -40,7 +40,7 @@
         "images"
       ]
     },
-    "dollar": {
+    "coin": {
       "type": "integer"
     },
     "add_courses": {
