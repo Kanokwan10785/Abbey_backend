@@ -1,3 +1,10 @@
+#Abbey_fontend  
+ในโปรเจกต์นี้ เราใช้ branch `ex-03` เป็น branch หลัก สำหรับการพัฒนา โดยรวบรวมฟีเจอร์หลักและการปรับปรุงต่าง ๆ ไว้ที่ branch นี้เป็นหลัก เพื่อให้สามารถจัดการและติดตามงานได้อย่างเป็นระบบ  
+
+Frontend ของโปรเจกต์ Abbey Health Buddy application  
+
+📌 **Backend Repository**: [Abbey_frontend](https://github.com/Kanokwan10785/Abbey_fontend/tree/ex-03)
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
